@@ -1,0 +1,75 @@
+{% extends "bootstrap/base.html" %}
+{% block styles %}
+{{super()}}
+<link rel="stylesheet"
+      href="{{url_for('static', filename='styles/mystyle.css')}}">
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+{% endblock %}
+
+{% block title %}Excel to Calendars{% endblock %}
+
+{% block navbar %}
+<div class="navbar navbar-fixed-top">
+  <!-- ... -->
+</div>
+{% endblock %}
+
+{% block content %}
+<div class = "container">
+
+    <h1>Convert a list of Excel Events to PDF Calendars and an ICS
+      File</h1>
+    <p>
+      You should have a Microsoft XLSX file that has a list of dates
+      (or dates and times) in Column A and a list of events in Column
+      B.  Click the "Browse" button below and locate that file.  Press
+      the "Create Zip file of PDF and ICS file" button and you will be
+      prompted to open or save a Zip file.  You should save it.  In
+      that Zip file will be a PDF file with a monthly calendar for
+      each month that has an event and an ICS file that can be
+      imported into your calendar program (Microsoft Outlook, MacOS
+      Calendar, etc.)
+    </p>
+    <p>
+      An acceptable format for an input file is, for example:
+      <pre>
+	1/10/2020 10:30, Tennis Practice
+	1/17/2020 10:30, Tennis Practice
+	1/17/2020 19:00, Dinner with Pat
+	1/24/2020 10:30, Tennis Practice
+      </pre>
+      Or a Microsoft Excel file that looks like:
+      <table border=1 cellpadding=80>
+	<tr>
+	  <td>1/10/2020 10:30</td>
+	  <td>Tennis Practice</td>
+	</tr>
+	<tr>
+	  <td>1/17/2020 10:30</td>
+	  <td>Tennis Practice</td>
+	</tr>
+	<tr>
+	  <td>1/17/2020 19:00</td>
+	  <td>Dinner with Pat</td>
+	</tr>
+	<tr>
+	  <td>1/24/2020 10:30</td>
+	  <td>Tennis Practice</td>
+	</tr>
+      </table>
+    The event time is optional; if you leave it out the event will be
+    an "all day" event.
+    </p>
+    <hr/>
+    <p>
+      <form action = "/uploader" method = "POST"
+            enctype = "multipart/form-data">
+        <input id="inp" type = "file" name = "file"/>
+    </p>
+    <p style="text-align:center;">
+        <input type = "submit" value="Create Zip file of PDF and ICS files"/>
+      </form>
+    </p>
+
+</div>
+{% endblock %}

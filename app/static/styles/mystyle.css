@@ -1,0 +1,12 @@
+.container {
+    width: 75%;
+
+}
+#inp {
+  text-align: center;
+  margin: auto;
+}
+th, td {
+    padding: 5px;
+    background-color:none;
+}
